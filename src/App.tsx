@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
-import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import ImageGallery from "./components/ImageGallery/ImageGallery.jsx";
-import ImageModal from "./components/ImageModal/ImageModal.jsx";
-import Loader from "./components/Loader/Loader.jsx";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
-import requestPhotos from "./services/api.jsx";
+import SearchBar from "./components/SearchBar/SearchBar.js";
+import ImageGallery from "./components/ImageGallery/ImageGallery.js";
+import ImageModal from "./components/ImageModal/ImageModal.js";
+import Loader from "./components/Loader/Loader.js";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage.js";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.js";
+import requestPhotos from "./services/api.js";
 import { Toaster } from 'react-hot-toast';
 
 
