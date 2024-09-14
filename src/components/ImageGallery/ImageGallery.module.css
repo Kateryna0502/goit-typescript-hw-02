@@ -1,0 +1,8 @@
+.photoList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px auto;
+    justify-content: center;
+}
