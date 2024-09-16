@@ -1,6 +1,11 @@
+import { FC } from "react";
 import css from "./ErrorMessage.module.css";
 
-const ErrorMessage = ({ children }) => {
+interface ErrorMessageProps {
+  children: string;
+}
+
+const ErrorMessage: FC<ErrorMessageProps> = ({ children }) => {
   return (
     <div className={css.errorMessage}>
       <p>{children}</p>

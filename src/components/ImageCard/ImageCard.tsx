@@ -1,6 +1,21 @@
+import { FC } from "react";
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ urls, alt, likes, openModal, setCurrentPhoto }) => {
+interface ImageCardProps {
+  urls: {
+    small: string;
+    regular: string;
+  };
+
+  alt: string;
+  likes: number;
+  openModal: (imageUrl: string, description: string) => void;
+  setCurrentPhoto: (url: string, alt: string) => void;
+};
+
+  
+
+const ImageCard: FC<ImageCardProps> = ({ urls, alt, likes, openModal, setCurrentPhoto }) => {
     const handleClick = () => {
     setCurrentPhoto({ url: urls.regular, alt: alt });
      openModal();

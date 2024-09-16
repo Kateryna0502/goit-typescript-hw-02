@@ -1,7 +1,25 @@
 import  css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard.js";
+import { FC } from "react";
 
-const ImageGallery = ({ photos, openModal, setCurrentPhoto,  }) => {
+export interface Photos {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  alt: string;
+  likes: number;
+  description?: string;
+};
+
+interface ImageGalleryProps {
+  photos: Photos[];
+  openModal: () => void;
+  setCurrentPhoto: string
+};
+
+const ImageGallery: FC<ImageGalleryProps> = ({ photos, openModal, setCurrentPhoto  }) => {
   return (
     <ul className={css.photoList}>
       {Array.isArray(photos) &&

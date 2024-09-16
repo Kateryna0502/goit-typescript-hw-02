@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, FormEvent, FC } from "react";
 import SearchBar from "./components/SearchBar/SearchBar.js";
-import ImageGallery from "./components/ImageGallery/ImageGallery.js";
+import ImageGallery, { Photos } from "./components/ImageGallery/ImageGallery.js";
 import ImageModal from "./components/ImageModal/ImageModal.js";
 import Loader from "./components/Loader/Loader.js";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.js";
@@ -9,22 +9,23 @@ import requestPhotos from "./services/api.js";
 import { Toaster } from 'react-hot-toast';
 
 
-const App = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [photos, setPhotos] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [inputValue, setInputValue] = useState(null);
-  const [error, setError] = useState(false);
-  const [totalPages, setTotalPages] = useState(1);
-  const [showBtn, setShowBtn] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+
+const App: FC = () => {
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [photos, setPhotos] = useState<Photos[] | null>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [showBtn, setShowBtn] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentPhoto, setCurrentPhoto] = useState({
-    url: '',
-    alt: '',
+    url: string (''),
+    alt: string (''),
   });
 
   useEffect(() => {
-    async function fetchPhotos(query) {
+    async function fetchPhotos(query: string) {
       try {
         setError(false);
         setIsLoading(true);
@@ -49,7 +50,7 @@ const App = () => {
     fetchPhotos(inputValue);
   }, [inputValue, currentPage, totalPages]);
 
-  const onSubmit = evt => {
+  const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
     const form = evt.currentTarget;
     setPhotos(null);
     setCurrentPage(1);

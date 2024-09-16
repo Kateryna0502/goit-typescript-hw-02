@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaSearch } from 'react-icons/fa';
 
-const SearchBar = ({ onSubmit }) => {
+type SearchBarProps = {
+  onSubmit: (query: string) => void;
+};
+const SearchBar: FC <SearchBarProps> = ({ onSubmit }) => {
   const [notification, setNotification] = useState(false);
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (evt.currentTarget.elements.query.value.trim() === '') {
       setNotification(true);
