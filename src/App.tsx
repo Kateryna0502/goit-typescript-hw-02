@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast';
 
 
 
-const App: FC = () => {
+const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [photos, setPhotos] = useState<Photos[] | null>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -19,10 +19,8 @@ const App: FC = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [showBtn, setShowBtn] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPhoto, setCurrentPhoto] = useState({
-    url: string (''),
-    alt: string (''),
-  });
+  const [currentPhoto, setCurrentPhoto] = useState<{ url: string, alt: string }>({ url: '', alt: '' });
+  
 
   useEffect(() => {
     async function fetchPhotos(query: string) {
