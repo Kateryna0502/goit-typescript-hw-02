@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [photos, setPhotos] = useState<Photos[] | null>([]);
+  const [photos, setPhotos] = useState<Photos[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
