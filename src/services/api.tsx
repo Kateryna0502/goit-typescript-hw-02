@@ -9,10 +9,10 @@ interface Data {
   };
 };
 
-interface RequestPhotos {
+export interface RequestPhotos {
   results: Data[];
   total_pages: number;
-  per_page: number;
+  total: number;
 };
 
 const requestPhotos = async (query: string, pageNumber: number): Promise<RequestPhotos> => {
@@ -30,7 +30,7 @@ const requestPhotos = async (query: string, pageNumber: number): Promise<Request
       },
     }
   );
-  // console.log (data)
+  console.log (data)
   return data;
   
 };

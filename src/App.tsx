@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo, FormEvent, FC } from "react";
 import SearchBar from "./components/SearchBar/SearchBar.js";
 import ImageGallery, { Photos } from "./components/ImageGallery/ImageGallery.js";
-import ImageModal from "./components/ImageModal/ImageModal.js";
+import ImageModal, { Modal } from "./components/ImageModal/ImageModal.js";
 import Loader from "./components/Loader/Loader.js";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.js";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.js";
-import requestPhotos from "./services/api.js";
+import requestPhotos, { RequestPhotos } from "./services/api.js";
 import { Toaster } from 'react-hot-toast';
 
 
@@ -19,17 +19,18 @@ const App = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [showBtn, setShowBtn] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPhoto, setCurrentPhoto] = useState<{ url: string, alt: string }>({ url: '', alt: '' });
+  const [currentPhoto, setCurrentPhoto] = useState<Modal>({ url: '', alt: '' });
   
 
   useEffect(() => {
-    async function fetchPhotos(query: string) {
+    async function fetchPhotos<T>(query: string) {
       try {
         setError(false);
         setIsLoading(true);
         
         if (inputValue === null) return;
         const data = await requestPhotos(query, currentPage);
+        
         if (totalPages < currentPage) return;
         if (data.results.length === 0) {
           setError(true);
@@ -47,6 +48,7 @@ const App = () => {
     }
     fetchPhotos(inputValue);
   }, [inputValue, currentPage, totalPages]);
+      
 
   const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
     const form = evt.currentTarget;

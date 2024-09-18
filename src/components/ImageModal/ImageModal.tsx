@@ -19,11 +19,18 @@ const customStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 };
+
+export type Modal = {
+  url: string,
+  alt: string,
+}
+
 interface ImageModalProps {
   modalIsOpen: boolean
   closeModal: () => void;
-  currentPhoto: string;
+  currentPhoto: Modal;
 } 
+
 
 const ImageModal: FC<ImageModalProps> = ({ modalIsOpen, closeModal, currentPhoto }) => {
   return (
