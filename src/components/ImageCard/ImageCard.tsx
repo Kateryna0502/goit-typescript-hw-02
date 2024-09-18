@@ -1,5 +1,6 @@
 import { FC } from "react";
 import css from "./ImageCard.module.css";
+import { Modal } from "../ImageModal/ImageModal";
 
 interface ImageCardProps {
   urls: {
@@ -9,7 +10,7 @@ interface ImageCardProps {
 
   alt: string;
   likes: number;
-  openModal: (imageUrl: string, description: string) => void;
+  openModal: () => void;
   setCurrentPhoto: (url: string, alt: string) => void;
 };
 

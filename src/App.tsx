@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [photos, setPhotos] = useState<Photos[] | null>(null);
+  const [photos, setPhotos] = useState<Photos[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
@@ -23,15 +23,15 @@ const App = () => {
   
 
   useEffect(() => {
-    async function fetchPhotos<T>(query: string) {
+    async function fetchPhotos () {
       try {
         setError(false);
         setIsLoading(true);
         
         if (inputValue === null) return;
-        const data = await requestPhotos(query, currentPage);
+        const data = await requestPhotos(inputValue, currentPage);
         
-        if (totalPages < currentPage) return;
+        if (data.total_pages < currentPage) return;
         if (data.results.length === 0) {
           setError(true);
         } else {
@@ -46,8 +46,8 @@ const App = () => {
         setIsLoading(false);
       }
     }
-    fetchPhotos(inputValue);
-  }, [inputValue, currentPage, totalPages]);
+    fetchPhotos();
+  }, [inputValue, currentPage]);
       
 
   const onSubmit = (evt: FormEvent<HTMLFormElement>) => {

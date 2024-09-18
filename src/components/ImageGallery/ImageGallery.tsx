@@ -16,7 +16,7 @@ export interface Photos {
 interface ImageGalleryProps {
   photos: Photos[];
   openModal: () => void;
-  setCurrentPhoto: string
+  setCurrentPhoto: (url: string) => void;
 };
 
 const ImageGallery: FC<ImageGalleryProps> = ({ photos, openModal, setCurrentPhoto  }) => {
