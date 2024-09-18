@@ -51,11 +51,13 @@ const App = () => {
       
 
   const onSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    
     const form = evt.currentTarget;
-    setPhotos(null);
+    const input = form.elements.namedItem('query') as HTMLInputElement;
+    setPhotos([]);
     setCurrentPage(1);
     setShowBtn(false);
-    setInputValue(form.elements.query.value);
+    setInputValue(input.value);
     form.reset();
   };
 
@@ -67,10 +69,10 @@ const App = () => {
   const isActive = useMemo(() => currentPage === totalPages, [currentPage, totalPages]);
   
   
-  function openModal() {
+  const openModal = () => {
     setModalIsOpen(true);
   }
-  function closeModal() {
+  const closeModal = () => {
     setModalIsOpen(false);
   }
 
@@ -85,7 +87,7 @@ const App = () => {
   return (
     <div>
       <SearchBar onSubmit={onSubmit} />
-      {photos !== null &&  (
+      {photos.length > 0 &&  (
         <ImageGallery
           photos={photos}
           setCurrentPhoto={setCurrentPhoto}

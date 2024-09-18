@@ -11,14 +11,14 @@ interface ImageCardProps {
   alt: string;
   likes: number;
   openModal: () => void;
-  setCurrentPhoto: (url: string, alt: string) => void;
-};
+  setCurrentPhoto: (photo: { url: string, alt: string }) => void;
+}
 
   
 
 const ImageCard: FC<ImageCardProps> = ({ urls, alt, likes, openModal, setCurrentPhoto }) => {
     const handleClick = () => {
-    setCurrentPhoto({ url: urls.regular, alt: alt });
+    setCurrentPhoto({ url: urls.regular, alt });
      openModal();
       };
 

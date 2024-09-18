@@ -6,12 +6,14 @@ import { FaSearch } from 'react-icons/fa';
 type SearchBarProps = {
   onSubmit: (query: string) => void;
 };
-const SearchBar: FC <SearchBarProps> = ({ onSubmit }) => {
-  const [notification, setNotification] = useState(false);
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const [notification, setNotification] = useState<boolean>(false);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (evt.currentTarget.elements.query.value.trim() === '') {
+    const form = evt.currentTarget;
+    const query = form.elements.namedItem('query') as HTMLInputElement;
+    if (query.value.trim() === '') {
       setNotification(true);
     } else {
       setNotification(false);

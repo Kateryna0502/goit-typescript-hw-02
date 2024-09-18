@@ -1,16 +1,18 @@
 import axios from "axios";
 
-interface Data {
-  id: number;
-  description: string;
+export interface Photos {
+  id: string;
   urls: {
     small: string;
     regular: string;
   };
+  alt: string;
+  likes: number;
+  description?: string;
 };
 
 export interface RequestPhotos {
-  results: Data[];
+  results: Photos[];
   total_pages: number;
   total: number;
 };
