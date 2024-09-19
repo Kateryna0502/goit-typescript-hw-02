@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo, FormEvent, FC } from "react";
 import SearchBar from "./components/SearchBar/SearchBar.js";
-import ImageGallery, { Photos } from "./components/ImageGallery/ImageGallery.js";
+import ImageGallery from "./components/ImageGallery/ImageGallery.js";
 import ImageModal, { Modal } from "./components/ImageModal/ImageModal.js";
 import Loader from "./components/Loader/Loader.js";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.js";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.js";
-import requestPhotos, { RequestPhotos } from "./services/api.js";
+import requestPhotos, { Photos, RequestPhotos } from "./services/api.js";
 import { Toaster } from 'react-hot-toast';
 
 
@@ -15,11 +15,12 @@ const App = () => {
   const [photos, setPhotos] = useState<Photos[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string | null>(null);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<boolean | null>(false);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [showBtn, setShowBtn] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currentPhoto, setCurrentPhoto] = useState<Modal>({ url: '', alt: '' });
+  const [isEmpty, setIsEmpty] = useState <boolean>(false)
   
 
   useEffect(() => {
@@ -27,13 +28,15 @@ const App = () => {
       try {
         setError(false);
         setIsLoading(true);
+        setIsEmpty(false);
         
         if (inputValue === null) return;
         const data = await requestPhotos(inputValue, currentPage);
         
-        if (data.total_pages < currentPage) return;
+        // if (data.total_pages < currentPage) return;
         if (data.results.length === 0) {
-          setError(true);
+           setIsEmpty(true);
+          // setError(true);
         } else {
           setPhotos(prev =>
             currentPage === 1 ? data.results : [...prev, ...data.results]
@@ -86,7 +89,9 @@ const App = () => {
 
   return (
     <div>
-      <SearchBar onSubmit={onSubmit} />
+      <SearchBar onSubmit={onSubmit}
+      />
+      
       {photos.length > 0 &&  (
         <ImageGallery
           photos={photos}
@@ -105,7 +110,8 @@ const App = () => {
           }} >
           За вашим запитом не знайдено більше фотографій </p>
       )}
-      {Array.isArray(photos) && photos.length === 0 && (
+      
+      {isEmpty &&  (
         <p style={{ color: 'red', margin: 'auto', width: '500px' }}>
           За вашим запитом не знайдено фотографій, спробуйте ще раз
         </p>

@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { FaSearch } from 'react-icons/fa';
 
 type SearchBarProps = {
-  onSubmit: (query: string) => void;
+  onSubmit: (evt: FormEvent<HTMLFormElement>) => void;
 };
 const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
   const [notification, setNotification] = useState<boolean>(false);

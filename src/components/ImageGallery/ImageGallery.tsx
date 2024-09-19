@@ -8,7 +8,7 @@ import { Photos } from "../../services/api";
 interface ImageGalleryProps {
   photos: Photos[];
   openModal: () => void;
-  setCurrentPhoto: (url: string) => void;
+  setCurrentPhoto: (photo: { url: string, alt: string }) => void;
 };
 
 const ImageGallery: FC<ImageGalleryProps> = ({ photos, openModal, setCurrentPhoto  }) => {
