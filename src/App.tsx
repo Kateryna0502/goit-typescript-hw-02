@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, FormEvent, FC } from "react";
 import SearchBar from "./components/SearchBar/SearchBar.js";
 import ImageGallery from "./components/ImageGallery/ImageGallery.js";
-import ImageModal, { Modal } from "./components/ImageModal/ImageModal.js";
+import ImageModal, { Modale } from "./components/ImageModal/ImageModal.js";
 import Loader from "./components/Loader/Loader.js";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.js";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.js";
@@ -19,7 +19,7 @@ const App = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [showBtn, setShowBtn] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPhoto, setCurrentPhoto] = useState<Modal>({ url: '', alt: '' });
+  const [currentPhoto, setCurrentPhoto] = useState<Modale>({ url: '', alt: '' });
   const [isEmpty, setIsEmpty] = useState <boolean>(false)
   
 
