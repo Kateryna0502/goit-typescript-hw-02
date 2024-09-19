@@ -20,7 +20,7 @@ const customStyles = {
   },
 };
 
-export type Modal = {
+export type Modale = {
   url: string,
   alt: string,
 }
@@ -28,7 +28,7 @@ export type Modal = {
 interface ImageModalProps {
   modalIsOpen: boolean
   closeModal: () => void;
-  currentPhoto: Modal;
+  currentPhoto: Modale;
 } 
 
 
