@@ -1,6 +1,6 @@
 import { FC } from "react";
 import css from "./ImageCard.module.css";
-import { Modal } from "../ImageModal/ImageModal";
+import { Modale } from "../ImageModal/ImageModal";
 
 interface ImageCardProps {
   urls: {
